@@ -1,16 +1,20 @@
 package com.example.ourlife.ui.auth
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import com.example.ourlife.R
 import com.example.ourlife.domain.usecases.accountValidation
+import com.example.ourlife.ui.theme.Tertiary
 
 @Composable
 fun LoginContent(
@@ -18,8 +22,54 @@ fun LoginContent(
     onRegisterClick: () -> Unit
 ) {
     Column {
-        LoginSection(onLoginClick = onLoginClick)
-        RegisterSection(onRegisterClick = onRegisterClick)
+        LogoSection()
+        BoxOverlay(onLoginClick, onRegisterClick)
+    }
+}
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun BoxOverlay(
+    onLoginClick: () -> Unit,
+    onRegisterClick: () -> Unit
+){
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .clip(RoundedCornerShape(30.dp)),
+        elevation = CardDefaults.cardElevation(10.dp),
+        colors = CardDefaults.cardColors(Tertiary)
+    ){
+        Column() {
+            LoginSection(onLoginClick = onLoginClick)
+            RegisterSection(onRegisterClick = onRegisterClick)
+        }
+    }
+}
+
+@Composable
+fun LogoSection() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Image(
+                painter = painterResource(R.drawable.ic_logo),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(150.dp)
+            )
+            Text(
+                text = "Our Life",
+                style = MaterialTheme.typography.headlineLarge
+            )
+        }
     }
 }
 
@@ -37,18 +87,32 @@ fun LoginSection(
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text(
+            text = "Login",
+            style = MaterialTheme.typography.headlineSmall
+        )
         TextField(
             value = email,
             onValueChange = { email = it },
             label = { Text("Email") },
-            modifier = Modifier.fillMaxWidth()
+            leadingIcon = {
+                          Icon(painter = painterResource(id = R.drawable.ic_mail_2), contentDescription = null)
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(20.dp))
         )
         Spacer(modifier = Modifier.height(16.dp))
         TextField(
             value = password,
             onValueChange = { password = it },
             label = { Text("Password") },
-            modifier = Modifier.fillMaxWidth(),
+            leadingIcon = {
+                Icon(painter = painterResource(id = R.drawable.ic_pass), contentDescription = null)
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(20.dp)),
             visualTransformation = PasswordVisualTransformation()
         )
         if (errMsg.isNotBlank()) {
@@ -64,7 +128,7 @@ fun LoginSection(
                 if (accountValidation(email, password) == 0) {
                     errMsg = ""
                     onLoginClick()
-                } else if(accountValidation(email, password) == 1){
+                } else if (accountValidation(email, password) == 1) {
                     errMsg = "All fields are required!"
                 }
             },
