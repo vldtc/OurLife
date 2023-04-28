@@ -1,4 +1,4 @@
-package com.example.ourlife.navgraphs
+package com.example.ourlife.domain.navgraphs
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController

@@ -1,4 +1,4 @@
-package com.example.ourlife.di
+package com.example.ourlife.domain.di
 
 import com.example.ourlife.data.remote.ApiDetails
 import com.example.ourlife.data.remote.ApiRequest

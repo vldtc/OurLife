@@ -1,4 +1,4 @@
-package com.example.ourlife.navgraphs
+package com.example.ourlife.domain.navgraphs
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -20,13 +20,16 @@ fun NavGraphBuilder.authNavGraph(
                     navController.popBackStack()
                     navController.navigate(Graph.MAIN)
                 },
-                onRegisterClick = {
-                    navController.navigate(AuthScreen.Register.route)
-                }
-            )
+            ) {
+                navController.navigate(AuthScreen.Register.route)
+            }
         }
         composable(route = AuthScreen.Register.route){
-            RegisterContent()
+            RegisterContent(
+                onSuccessRegister = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }

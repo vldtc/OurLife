@@ -2,9 +2,8 @@ package com.example.ourlife.ui.main
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import com.example.ourlife.domain.navgraphs.BottomBarScreen
 
 @Composable
-fun ProfileContent(){
-    Text(text = BottomBarScreen.Profile.title)
+fun FeedContent(){
+    Text(text = "Feed")
 }

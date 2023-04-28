@@ -12,8 +12,8 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.ourlife.navgraphs.BottomBarScreen
-import com.example.ourlife.navgraphs.MainNavGraph
+import com.example.ourlife.domain.navgraphs.BottomBarScreen
+import com.example.ourlife.domain.navgraphs.MainNavGraph
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -34,7 +34,7 @@ fun BottomBar(
     navController: NavHostController
 ) {
     val screens = listOf(
-        BottomBarScreen.Home,
+        BottomBarScreen.Feed,
         BottomBarScreen.Profile
     )
 
@@ -76,7 +76,7 @@ fun RowScope.AddItem(
         selected = currentDestination?.hierarchy?.any {
             it.route == screen.route
         } == true,
-        unselectedContentColor = androidx.compose.material.LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
+        unselectedContentColor = LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
         onClick = {
             navController.navigate(screen.route) {
                 popUpTo(navController.graph.findStartDestination().id)

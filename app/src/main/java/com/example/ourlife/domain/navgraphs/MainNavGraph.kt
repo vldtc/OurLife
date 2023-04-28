@@ -1,4 +1,4 @@
-package com.example.ourlife.navgraphs
+package com.example.ourlife.domain.navgraphs
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -8,6 +8,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.ourlife.ui.main.FeedContent
 import com.example.ourlife.ui.main.HomeContent
 import com.example.ourlife.ui.main.ProfileContent
 
@@ -18,13 +19,16 @@ fun MainNavGraph(
     NavHost(
         navController = navController,
         route = Graph.MAIN,
-        startDestination = BottomBarScreen.Home.route
+        startDestination = BottomBarScreen.Feed.route
     ){
         composable(route = BottomBarScreen.Home.route){
             HomeContent()
         }
         composable(route = BottomBarScreen.Profile.route){
             ProfileContent()
+        }
+        composable(route = BottomBarScreen.Feed.route){
+            FeedContent()
         }
     }
 }
@@ -43,6 +47,12 @@ sealed class BottomBarScreen(
     object Profile: BottomBarScreen(
         route = "profile_route",
         title = "Profile",
+        icon = Icons.Default.Person
+    )
+
+    object Feed: BottomBarScreen(
+        route = "feed_route",
+        title = "Feed",
         icon = Icons.Default.Person
     )
 }
