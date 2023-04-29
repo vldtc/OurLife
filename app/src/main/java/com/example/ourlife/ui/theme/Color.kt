@@ -11,6 +11,10 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 //App Theme Colour
-val Primary = Color(0xFFA0FDF3)
+val Tertiary = Color(0xFFA0FDF3)
 val Secondary = Color(0xFF69ADC7)
-val Tertiary = Color(0xFF305D9D)
+val Primary = Color(0xFF305D9D)
+
+//Box Overlay Color
+val BoxColor = Color(0xFFF7F7F7)
+val TextColor = Color(0xFF787878)

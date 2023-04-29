@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "977189677850",
+    "project_id": "ourlife-c3b8b",
+    "storage_bucket": "ourlife-c3b8b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:977189677850:android:9d31ad6c0fa194a946daa3",
+        "android_client_info": {
+          "package_name": "com.example.ourlife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "977189677850-pj77cbdisduh7d0diksq93tln51u9r23.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ourlife",
+            "certificate_hash": "d2b0a756e43ced234b3d8525076c8c9ac66306ae"
+          }
+        },
+        {
+          "client_id": "977189677850-79bkj65m928mofv6nut88l1qag3r1ufl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBM1Fj06mjDwDDv2w0Wpg-wHRbtvrwvZC8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "977189677850-79bkj65m928mofv6nut88l1qag3r1ufl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
