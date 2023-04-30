@@ -23,9 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ourlife.R
 import com.example.ourlife.domain.usecases.registerValidation
-import com.example.ourlife.ui.theme.BoxColor
-import com.example.ourlife.ui.theme.Primary
-import com.example.ourlife.ui.theme.TextColor
+import com.example.ourlife.ui.theme.*
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -139,7 +137,12 @@ fun RegisterContentSection(
             modifier = Modifier
                 .fillMaxWidth(),
             shape = RoundedCornerShape(20.dp),
-            colors = TextFieldDefaults.textFieldColors(Primary)
+            colors = TextFieldDefaults.colors(
+                focusedTextColor = Primary,
+                focusedContainerColor = Primary,
+                unfocusedContainerColor = Secondary,
+                disabledContainerColor = Tertiary,
+            )
         )
         Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(
@@ -160,7 +163,12 @@ fun RegisterContentSection(
             modifier = Modifier
                 .fillMaxWidth(),
             shape = RoundedCornerShape(20.dp),
-            colors = TextFieldDefaults.textFieldColors(Primary),
+            colors = TextFieldDefaults.colors(
+                focusedTextColor = Primary,
+                focusedContainerColor = Primary,
+                unfocusedContainerColor = Secondary,
+                disabledContainerColor = Tertiary,
+            ),
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
                 IconButton(onClick = { passwordVisible = !passwordVisible }) {
@@ -191,7 +199,12 @@ fun RegisterContentSection(
             modifier = Modifier
                 .fillMaxWidth(),
             shape = RoundedCornerShape(20.dp),
-            colors = TextFieldDefaults.textFieldColors(Primary),
+            colors = TextFieldDefaults.colors(
+                focusedTextColor = Primary,
+                focusedContainerColor = Primary,
+                unfocusedContainerColor = Secondary,
+                disabledContainerColor = Tertiary,
+            ),
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
         )
         Spacer(modifier = Modifier.height(16.dp))

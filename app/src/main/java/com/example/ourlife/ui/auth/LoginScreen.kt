@@ -6,11 +6,13 @@ import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -20,7 +22,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ourlife.R
-import com.example.ourlife.domain.navgraphs.Graph
 import com.example.ourlife.domain.usecases.accountValidation
 import com.example.ourlife.ui.theme.BoxColor
 import com.example.ourlife.ui.theme.Primary
@@ -30,7 +31,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-
 lateinit var auth: FirebaseAuth
 
 @Composable
@@ -39,6 +39,7 @@ fun LoginContent(
     onRegisterClick: () -> Unit
 ) {
     auth = Firebase.auth
+
 
     Column(
         modifier = Modifier
@@ -63,9 +64,10 @@ fun LoginBoxOverlay(
                 .fillMaxHeight()
                 .background(BoxColor)
         ) {
-            Column() {
+            Column {
                 LoginSection(onLoginClick = onLoginClick)
                 RegisterSection(onRegisterClick = onRegisterClick)
+                AlternateLoginSection()
             }
         }
     }
@@ -99,6 +101,7 @@ fun LogoSection() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginSection(
     onLoginClick: () -> Unit
@@ -120,7 +123,7 @@ fun LoginSection(
                 .padding(vertical = 8.dp)
         ) {
             Text(
-                text = "Login in",
+                text = "Login",
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 20.sp,
                 color = Primary
@@ -278,6 +281,68 @@ fun RegisterSection(
                 modifier = Modifier
                     .padding(4.dp)
             )
+        }
+    }
+}
+
+@Composable
+fun AlternateLoginSection() {
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(vertical = 8.dp)
+        ) {
+            Text(
+                text = "Login",
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 16.sp,
+                color = Primary
+            )
+            Text(
+                text = " using an alternate method.",
+                fontSize = 16.sp,
+                color = TextColor
+            )
+        }
+        Row(
+            modifier = Modifier
+                .padding(vertical = 8.dp, horizontal = 100.dp)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceAround
+        ){
+            Box(
+                modifier = Modifier
+                    .size(48.dp)
+                    .clip(CircleShape)
+                    .background(Primary),
+            ){
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_google),
+                        contentDescription = null,
+                        tint = BoxColor
+                    )
+                }
+            }
+            Box(
+                modifier = Modifier
+                    .size(48.dp)
+                    .clip(CircleShape)
+                    .background(Primary),
+            ){
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_github),
+                        contentDescription = null,
+                        tint = BoxColor
+                    )
+                }
+            }
         }
     }
 }

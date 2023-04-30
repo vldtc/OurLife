@@ -10,7 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.ourlife.ui.main.FeedContent
 import com.example.ourlife.ui.main.HomeContent
-import com.example.ourlife.ui.main.ProfileContent
+import com.example.ourlife.ui.main.profile.ProfileContent
 
 @Composable
 fun MainNavGraph(
