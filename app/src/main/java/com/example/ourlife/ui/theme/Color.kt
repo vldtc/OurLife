@@ -18,4 +18,4 @@ val Primary = Color(0xFF305D9D)
 //Box Overlay Color
 val BoxColor = Color(0xFFF7F7F7)
 val TextColor = Color(0xFF787878)
-val DarkBackground = Color(0xFF222222)
+val DarkBackground = Color(0xFF292929)

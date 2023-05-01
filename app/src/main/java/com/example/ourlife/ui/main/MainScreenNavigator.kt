@@ -23,6 +23,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.ourlife.domain.navgraphs.BottomBarScreen
 import com.example.ourlife.domain.navgraphs.MainNavGraph
 import com.example.ourlife.ui.theme.Primary
+import com.example.ourlife.ui.theme.Secondary
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -128,6 +129,7 @@ fun BottomBar(
 
     if (bottomBarDestination) {
         BottomNavigation(
+            backgroundColor = Primary
         ) {
             screens.forEach { screen ->
                 AddItem(
@@ -149,18 +151,19 @@ fun RowScope.AddItem(
 ) {
     BottomNavigationItem(
         label = {
-            Text(text = screen.title)
+            Text(text = screen.title, color = Color.White)
         },
         icon = {
             Icon(
                 imageVector = screen.icon,
-                contentDescription = "Navigation Icon"
+                contentDescription = "Navigation Icon",
+                tint = Color.White
             )
         },
         selected = currentDestination?.hierarchy?.any {
             it.route == screen.route
         } == true,
-        unselectedContentColor = LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
+        unselectedContentColor = Secondary,
         onClick = {
             navController.navigate(screen.route) {
                 popUpTo(navController.graph.findStartDestination().id)

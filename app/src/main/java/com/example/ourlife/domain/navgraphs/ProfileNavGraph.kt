@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.ourlife.ui.main.profile.screens.AlbumsContent
-import com.example.ourlife.ui.main.profile.screens.PhotosContent
+import com.example.ourlife.ui.main.profile.screens.PostsContent
 import com.example.ourlife.ui.main.profile.screens.ProfileTabsContent
 import com.example.ourlife.ui.main.profile.screens.TodosContent
 
@@ -16,13 +16,13 @@ fun ProfileNavGraph(
     NavHost(
         navController = navController,
         route = Graph.PROFILE,
-        startDestination = ProfileScreens.Photos.route
+        startDestination = ProfileScreens.Posts.route
     ) {
         composable(route = ProfileScreens.ProfileNavigator.route) {
             ProfileTabsContent()
         }
-        composable(route = ProfileScreens.Photos.route) {
-            PhotosContent()
+        composable(route = ProfileScreens.Posts.route) {
+            PostsContent()
         }
         composable(route = ProfileScreens.Albums.route) {
             AlbumsContent()
@@ -35,7 +35,7 @@ fun ProfileNavGraph(
 
 sealed class ProfileScreens(val route: String) {
     object ProfileNavigator: ProfileScreens(route = "NAVIGATOR")
-    object Photos : ProfileScreens(route = "PHOTOS")
+    object Posts : ProfileScreens(route = "POSTS")
     object Albums : ProfileScreens(route = "ALBUMS")
     object Todos : ProfileScreens(route = "TODOS")
 }

@@ -8,7 +8,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ContentAlpha
@@ -25,14 +24,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.ourlife.R
 import com.example.ourlife.data.model.users.AddressModel
 import com.example.ourlife.data.model.users.CompanyModel
 import com.example.ourlife.data.model.users.UsersItemModel
-import com.example.ourlife.domain.navgraphs.ProfileNavGraph
-import com.example.ourlife.ui.main.profile.screens.PhotosContent
 import com.example.ourlife.ui.main.profile.screens.ProfileTabsContent
 import com.example.ourlife.ui.theme.BoxColor
 import com.example.ourlife.ui.theme.DarkBackground
@@ -48,6 +44,8 @@ fun ProfileContent(
     val user by viewModel.user.collectAsState()
     val userAddress by viewModel.userAddress.collectAsState()
     val userCompany by viewModel.userCompany.collectAsState()
+
+    viewModel.getUserProfile()
 
     Scaffold(
         content = {
