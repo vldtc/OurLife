@@ -2,6 +2,8 @@ package com.example.ourlife.ui.main.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ourlife.data.model.users.AddressModel
+import com.example.ourlife.data.model.users.CompanyModel
 import com.example.ourlife.data.model.users.UsersItemModel
 import com.example.ourlife.data.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,6 +23,12 @@ class ProfileViewModel @Inject constructor(
     private val _user = MutableStateFlow(UsersItemModel())
     val user: StateFlow<UsersItemModel> = _user
 
+    private val _userAddress = MutableStateFlow(AddressModel())
+    val userAddress: StateFlow<AddressModel> = _userAddress
+
+    private val _userCompany = MutableStateFlow(CompanyModel())
+    val userCompany: StateFlow<CompanyModel> = _userCompany
+
     init{
         getUserProfile()
     }
@@ -30,6 +38,8 @@ class ProfileViewModel @Inject constructor(
             withContext(NonCancellable){
                 val response = repository.getUserProfile(1)
                 _user.value = response
+                _userAddress.value = response.address!!
+                _userCompany.value = response.company!!
             }
         }
     }

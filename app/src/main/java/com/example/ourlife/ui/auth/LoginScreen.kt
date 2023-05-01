@@ -23,10 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ourlife.R
 import com.example.ourlife.domain.usecases.accountValidation
-import com.example.ourlife.ui.theme.BoxColor
-import com.example.ourlife.ui.theme.Primary
-import com.example.ourlife.ui.theme.Secondary
-import com.example.ourlife.ui.theme.TextColor
+import com.example.ourlife.ui.theme.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -45,7 +42,7 @@ fun LoginContent(
 
     Column(
         modifier = Modifier
-            .background(Color.Black)
+            .background(DarkBackground)
     ) {
         LogoSection()
         LoginBoxOverlay(onLoginClick, onRegisterClick)

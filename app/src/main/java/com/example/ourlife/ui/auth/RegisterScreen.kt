@@ -32,7 +32,7 @@ fun RegisterContent(
 ) {
     Column(
         modifier = Modifier
-            .background(Color.Black)
+            .background(DarkBackground)
     ) {
         Box{
             BackSection(onSuccessRegister = onSuccessRegister)
