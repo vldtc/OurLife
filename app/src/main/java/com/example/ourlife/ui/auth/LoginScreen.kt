@@ -40,6 +40,8 @@ fun LoginContent(
 ) {
     auth = Firebase.auth
 
+    //Will only run the code only once using LaunchedEffect. (Similar to onStart in traditional Android)
+    VerifyLoggedIn(onLoginClick = onLoginClick)
 
     Column(
         modifier = Modifier
@@ -47,6 +49,16 @@ fun LoginContent(
     ) {
         LogoSection()
         LoginBoxOverlay(onLoginClick, onRegisterClick)
+    }
+}
+
+@Composable
+fun VerifyLoggedIn(onLoginClick: () -> Unit) {
+    LaunchedEffect(Unit) {
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            onLoginClick()
+        }
     }
 }
 

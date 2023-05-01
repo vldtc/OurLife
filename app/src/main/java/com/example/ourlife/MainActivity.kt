@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.ourlife.domain.navgraphs.RootNavGraph
+import com.example.ourlife.ui.auth.auth
 import com.example.ourlife.ui.theme.OurLifeTheme
 import dagger.hilt.android.AndroidEntryPoint
 

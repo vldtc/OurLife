@@ -5,6 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.ourlife.ui.main.HomeContent
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 @Composable
 fun RootNavGraph(
@@ -17,7 +19,11 @@ fun RootNavGraph(
         ){
             authNavGraph(navController = navController)
             composable(route = Graph.MAIN){
-                HomeContent()
+                HomeContent(onSignOut = {
+                    Firebase.auth.signOut()
+                    navController.popBackStack()
+                    navController.navigate(Graph.AUTH)
+                })
             }
     }
 }

@@ -1,11 +1,19 @@
 package com.example.ourlife.ui.main
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -14,16 +22,91 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.ourlife.domain.navgraphs.BottomBarScreen
 import com.example.ourlife.domain.navgraphs.MainNavGraph
+import com.example.ourlife.ui.theme.Primary
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun HomeContent(
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+    onSignOut: () -> Unit
 ) {
     Scaffold(
-        bottomBar = { BottomBar(navController = navController)}
+        bottomBar = { BottomBar(navController = navController)},
+        topBar = { Toolbar(onSignOut = onSignOut) }
     ) {
         MainNavGraph(navController = navController)
+    }
+}
+
+//TOP BAR NAVIGATION
+@Composable
+fun Toolbar(
+    onSignOut: () -> Unit
+) {
+    var expanded by remember { mutableStateOf(false) }
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(36.dp)
+            .background(Color.White),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = com.example.ourlife.R.drawable.ic_logo),
+                contentDescription = "logo",
+                Modifier
+                    .padding(start = 16.dp)
+                    .size(32.dp)
+            )
+            Text(
+                text = "OurLife",
+                modifier = Modifier
+                    .align(Alignment.CenterVertically),
+                color = Primary,
+                fontWeight = FontWeight.Bold
+            )
+        }
+        Box(modifier = Modifier
+            .padding(end = 16.dp)
+            .clickable(onClick = {
+                expanded = true
+            })
+        ) {
+            Icon(
+                painter = painterResource(id = com.example.ourlife.R.drawable.ic_more_vert),
+                contentDescription = "More Vert",
+                tint = Primary,
+                modifier = Modifier.size(24.dp)
+            )
+            androidx.compose.material3.DropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false },
+                modifier = Modifier
+                    .width(120.dp)
+                    .background(Color.White)
+            ) {
+                androidx.compose.material3.DropdownMenuItem(
+                    onClick = {
+                        expanded = false
+                        //Firebase.auth.signOut()
+                        onSignOut()
+                    },
+                    text = {
+                        Text(
+                            text = "Sign Out"
+                        )
+                    },
+                    leadingIcon = {
+                        Icon(painterResource(id = com.example.ourlife.R.drawable.ic_logout), contentDescription = "logout")
+                    }
+                )
+            }
+        }
     }
 }
 

@@ -22,7 +22,8 @@ fun MainNavGraph(
         startDestination = BottomBarScreen.Feed.route
     ){
         composable(route = BottomBarScreen.Home.route){
-            HomeContent()
+            HomeContent(onSignOut = {
+            })
         }
         composable(route = BottomBarScreen.Profile.route){
             ProfileContent()
