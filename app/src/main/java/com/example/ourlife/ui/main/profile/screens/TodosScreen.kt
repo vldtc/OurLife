@@ -49,9 +49,9 @@ fun TodosContent() {
            Text(text = "Completed: $completedTodos")
            Text(text = "In progress: $notCompletedTodos")
         }
-        Divider(Modifier.padding(16.dp))
+        Divider()
         LazyColumn(
-            Modifier.padding(bottom = 50.dp)
+            Modifier.padding(bottom = 58.dp)
         ) {
             items(todos.size) { item ->
                 ProfileTodosView(todo = todos.get(item))

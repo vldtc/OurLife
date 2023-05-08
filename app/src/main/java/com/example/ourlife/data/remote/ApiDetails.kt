@@ -14,4 +14,6 @@ object ApiDetails {
 
     const val POST_COMMENTS = "posts/{id}/comments"
 
+    const val POSTS = "posts/"
+
 }

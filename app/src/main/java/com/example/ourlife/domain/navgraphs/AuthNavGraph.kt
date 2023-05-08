@@ -20,21 +20,18 @@ fun NavGraphBuilder.authNavGraph(
                     navController.popBackStack()
                     navController.navigate(Graph.MAIN)
                 },
-            ) {
-                navController.navigate(AuthScreen.Register.route)
-            }
+                onRegisterClick = {
+                    navController.navigate(AuthScreen.Register.route)
+                },
+            )
         }
         composable(route = AuthScreen.Register.route){
             RegisterContent(
                 onSuccessRegister = {
-                    navController.popBackStack()
+                    navController.navigate(AuthScreen.Login.route)
                 }
             )
         }
     }
 }
 
-sealed class AuthScreen(val route: String) {
-    object Login : AuthScreen(route = "LOGIN")
-    object Register : AuthScreen(route = "REGISTER")
-}

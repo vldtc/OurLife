@@ -1,6 +1,7 @@
 package com.example.ourlife.ui.main.profile.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,17 +24,19 @@ import com.example.ourlife.ui.main.profile.ProfileViewModel
 import com.example.ourlife.ui.theme.Primary
 
 @Composable
-fun PostsContent() {
+fun PostsContent(
+    onPostClick: () -> Unit
+) {
 
     val viewModel = hiltViewModel<ProfileViewModel>()
     val posts by viewModel.userPosts.collectAsState()
     viewModel.getUserPosts()
 
     LazyColumn(
-        Modifier.padding(bottom = 50.dp)
+        Modifier.padding(bottom = 58.dp)
     ) {
         items(posts.size) { item ->
-            ProfilePostView(post = posts.get(item))
+            ProfilePostView(post = posts.get(item), onPostClick)
         }
     }
 }
@@ -41,7 +44,7 @@ fun PostsContent() {
 @Composable
 fun ProfilePostView(
     post: PostsItemModel,
-
+    onPostClick: () -> Unit
     ) {
     val viewModel = hiltViewModel<ProfileViewModel>()
     val comments by viewModel.postComments.collectAsState()
@@ -55,7 +58,8 @@ fun ProfilePostView(
     ) {
         Card(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .clickable { onPostClick() },
             shape = RoundedCornerShape(0.dp),
             elevation = 10.dp
         ) {
@@ -67,8 +71,9 @@ fun ProfilePostView(
                 ) {
                     Text(
                         text = post.title.toString(),
-                        Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                        Modifier.padding(horizontal = 8.dp, vertical = 6.dp),
                         color = Color.White,
+                        maxLines = 1,
                         fontWeight = FontWeight.SemiBold
                     )
                 }

@@ -10,10 +10,10 @@ import retrofit2.http.Path
 
 interface ApiRequest {
     @GET(ApiDetails.USER_PROFILE)
-    suspend fun getUserProfile(@Path("id")id: Int): UsersItemModel
+    suspend fun getUserProfile(@Path("id") id: Int?): UsersItemModel
 
     @GET(ApiDetails.USER_POSTS)
-    suspend fun getUserPosts(@Path("id")id: Int): List<PostsItemModel>
+    suspend fun getUserPosts(@Path("id")id: Int?): List<PostsItemModel>
 
     @GET(ApiDetails.USER_ALBUMS)
     suspend fun getUserAlbums(@Path("id")id: Int): List<AlbumsItemModel>
@@ -23,5 +23,8 @@ interface ApiRequest {
 
     @GET(ApiDetails.POST_COMMENTS)
     suspend fun getPostComments(@Path("id") id: Int?): List<CommentsItemModel>
+
+    @GET(ApiDetails.POSTS)
+    suspend fun getPosts(): List<PostsItemModel>
 
 }

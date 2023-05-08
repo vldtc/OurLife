@@ -114,7 +114,7 @@ fun RegisterContentSection(
             text = errMsg,
             color = Color.Red,
             modifier = Modifier.padding(top = 16.dp),
-            fontSize = 10.sp,
+            fontSize = 12.sp,
             fontWeight = FontWeight.ExtraBold
         )
         Spacer(modifier = Modifier.height(16.dp))
@@ -139,10 +139,10 @@ fun RegisterContentSection(
             shape = RoundedCornerShape(20.dp),
             colors = TextFieldDefaults.colors(
                 focusedTextColor = Primary,
-                focusedContainerColor = Primary,
-                unfocusedContainerColor = Secondary,
-                disabledContainerColor = Tertiary,
-            )
+                focusedContainerColor = Color.White,
+                unfocusedContainerColor = BoxColor,
+                disabledContainerColor = Color.Gray,
+            ),
         )
         Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(
@@ -165,9 +165,9 @@ fun RegisterContentSection(
             shape = RoundedCornerShape(20.dp),
             colors = TextFieldDefaults.colors(
                 focusedTextColor = Primary,
-                focusedContainerColor = Primary,
-                unfocusedContainerColor = Secondary,
-                disabledContainerColor = Tertiary,
+                focusedContainerColor = Color.White,
+                unfocusedContainerColor = BoxColor,
+                disabledContainerColor = Color.Gray,
             ),
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
@@ -201,9 +201,9 @@ fun RegisterContentSection(
             shape = RoundedCornerShape(20.dp),
             colors = TextFieldDefaults.colors(
                 focusedTextColor = Primary,
-                focusedContainerColor = Primary,
-                unfocusedContainerColor = Secondary,
-                disabledContainerColor = Tertiary,
+                focusedContainerColor = Color.White,
+                unfocusedContainerColor = BoxColor,
+                disabledContainerColor = Color.Gray,
             ),
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
         )

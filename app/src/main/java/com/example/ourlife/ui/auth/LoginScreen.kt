@@ -3,6 +3,7 @@ package com.example.ourlife.ui.auth
 import android.app.Activity
 import android.content.ContentValues
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -129,7 +130,7 @@ fun LoginSection(
     ) {
         Row(
             modifier = Modifier
-                .padding(vertical = 8.dp)
+                .padding(bottom = 8.dp)
         ) {
             Text(
                 text = "Login",
@@ -147,8 +148,8 @@ fun LoginSection(
         Text(
             text = errMsg,
             color = Color.Red,
-            modifier = Modifier.padding(top = 8.dp, bottom = 4.dp),
-            fontSize = 10.sp,
+            modifier = Modifier.padding(top = 8.dp),
+            fontSize = 12.sp,
             fontWeight = FontWeight.ExtraBold
         )
 
@@ -172,10 +173,16 @@ fun LoginSection(
             modifier = Modifier
                 .fillMaxWidth(),
             shape = RoundedCornerShape(20.dp),
-            colors = TextFieldDefaults.textFieldColors(Primary)
+            colors = TextFieldDefaults.colors(
+                focusedTextColor = Primary,
+                focusedContainerColor = Color.White,
+                unfocusedContainerColor = BoxColor,
+                disabledContainerColor = Color.Gray,
+            ),
         )
         Spacer(modifier = Modifier.height(16.dp))
         //Password Text Field
+
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
@@ -194,7 +201,12 @@ fun LoginSection(
             modifier = Modifier
                 .fillMaxWidth(),
             shape = RoundedCornerShape(20.dp),
-            colors = TextFieldDefaults.textFieldColors(Primary),
+            colors = TextFieldDefaults.colors(
+                focusedTextColor = Primary,
+                focusedContainerColor = Color.White,
+                unfocusedContainerColor = BoxColor,
+                disabledContainerColor = Color.Gray,
+            ),
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
                 IconButton(onClick = { passwordVisible = !passwordVisible }) {
@@ -237,7 +249,7 @@ fun LoginSection(
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 32.dp),
+                .padding(horizontal = 64.dp),
             elevation = ButtonDefaults.buttonElevation(8.dp),
             shape = RoundedCornerShape(20.dp)
         ) {
@@ -288,7 +300,7 @@ fun RegisterSection(
                 text = "Register",
                 color = Color.White,
                 modifier = Modifier
-                    .padding(4.dp)
+                    .padding(8.dp)
             )
         }
     }
@@ -302,6 +314,7 @@ fun AlternateLoginSection() {
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        val context = LocalContext.current
         Row(
             modifier = Modifier
                 .padding(vertical = 8.dp)
@@ -330,7 +343,9 @@ fun AlternateLoginSection() {
                     .clip(CircleShape)
                     .background(Primary),
             ){
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {
+                    Toast.makeText(context, "Not yet implemented! Work in progress.", Toast.LENGTH_SHORT).show()
+                }) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_google),
                         contentDescription = null,
@@ -344,7 +359,9 @@ fun AlternateLoginSection() {
                     .clip(CircleShape)
                     .background(Primary),
             ){
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {
+                    Toast.makeText(context, "Not yet implemented! Work in progress.", Toast.LENGTH_SHORT).show()
+                }) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_github),
                         contentDescription = null,

@@ -45,7 +45,7 @@ fun ProfileContent(
     val userAddress by viewModel.userAddress.collectAsState()
     val userCompany by viewModel.userCompany.collectAsState()
 
-    viewModel.getUserProfile()
+    viewModel.getUserProfile(5)
 
     Scaffold(
         content = {
@@ -86,7 +86,7 @@ fun ProfileInfoSection(
             )
         }
         Image(
-            painter = rememberAsyncImagePainter(model = "https://randomuser.me/api/portraits/men/${user.id}0.jpg"),
+            painter = rememberAsyncImagePainter(model = "https://randomuser.me/api/portraits/men/${user.id}.jpg"),
             contentDescription = "Profile Picture",
             Modifier
                 .size(100.dp)
@@ -95,7 +95,6 @@ fun ProfileInfoSection(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AboutSection(
     user: UsersItemModel,

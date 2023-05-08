@@ -19,12 +19,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class Module {
 
-    //Getting a GSON object
-    @Provides
-    fun provideGson(): Gson {
-        return Gson()
-    }
-
     //Creating the OKHttpClient for interception
     @Provides
     fun provideOkHttp(): OkHttpClient {
@@ -41,12 +35,11 @@ class Module {
     @Provides
     @Singleton
     fun provideRetrofit(
-        gson: Gson,
         provideOkHttpClient: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(ApiDetails.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(GsonConverterFactory.create(Gson()))
             .client(provideOkHttpClient)
             .build()
     }

@@ -11,11 +11,12 @@ import javax.inject.Inject
 class RepoImpl @Inject constructor(
     val apiRequest: ApiRequest
 ): Repository {
-    override suspend fun getUserProfile(id: Int): UsersItemModel = apiRequest.getUserProfile(id)
-    override suspend fun getUserPosts(id: Int): List<PostsItemModel> = apiRequest.getUserPosts(id)
+    override suspend fun getUserProfile(id: Int?): UsersItemModel = apiRequest.getUserProfile(id)
+    override suspend fun getUserPosts(id: Int?): List<PostsItemModel> = apiRequest.getUserPosts(id)
     override suspend fun getUserAlbums(id: Int): List<AlbumsItemModel> = apiRequest.getUserAlbums(id)
 
     override suspend fun getUserTodos(id: Int): List<TodosItemModel> = apiRequest.getUserTodos(id)
     override suspend fun getPostComments(id: Int?): List<CommentsItemModel> = apiRequest.getPostComments(id)
+    override suspend fun getPosts(): List<PostsItemModel> = apiRequest.getPosts()
 
 }
